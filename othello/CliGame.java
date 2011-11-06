@@ -28,36 +28,8 @@ public class CliGame implements Game {
 
 	@Override
 	public void play() {
-		System.out.print("\nLet the games begin!\n"
-				 + "\n1. Play against Robots!"
-				 + "\n2. Play against Friend!"
-				 + "\n3. Set Difficulty"
-				 + "\n4. Choose Color"
-				 + "\n0. Exit");
-		System.err.print("\n\nSelect action: ");
-		while (true) {
-			switch (readInt()) {
-				case 0:
-					System.exit(0);
-				case 1:
-					vsAi = true;
-					startGame();
-					break;
-				case 2:
-					vsAi = false;
-					startGame();
-					break;
-				case 3:
-					setDifficulty();
-					break;
-				case 4:
-					chooseColor();
-					break;
-				default:
-					System.err.print("Wrong choice. Try again\n");
-					break;
-			}
-		}
+		vsAi = true;
+		startGame();
 	}
 
 	public void startGame() {
