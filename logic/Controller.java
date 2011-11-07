@@ -120,10 +120,10 @@ public final class Controller {
 		Evaluation evalfunc;
 		searcher = new NegaMax();
 //		evalfunc = new ScoreEval();
-		evalfunc = new ScoreDiffEval();
-//		evalfunc = new ScoreCornerWeightEval();
+//		evalfunc = new ScoreDiffEval();
+		evalfunc = new ScoreCornerWeightEval((int)(Math.random()*10));
 //		return searcher.search(board, player, Integer.MIN_VALUE, Integer.MAX_VALUE, depth, evalfunc).getPoint();
-		return searcher.simpleSearch(board, player, depth, evalfunc).getPoint();
+		return searcher.simpleSearch(board, player, 5, evalfunc).getPoint();
 	}
 
 	private static class ControllerHolder {

@@ -19,7 +19,7 @@ public class CliGame implements Game {
 
 	private Controller controller = Controller.getInstance();
 	private Player humanoid;
-	private boolean vsAi;
+	private boolean vsAi=true;
 
 	public CliGame() {
 		controller.init();
@@ -28,36 +28,7 @@ public class CliGame implements Game {
 
 	@Override
 	public void play() {
-		System.out.print("\nLet the games begin!\n"
-				 + "\n1. Play against Robots!"
-				 + "\n2. Play against Friend!"
-				 + "\n3. Set Difficulty"
-				 + "\n4. Choose Color"
-				 + "\n0. Exit");
-		System.err.print("\n\nSelect action: ");
-		while (true) {
-			switch (readInt()) {
-				case 0:
-					System.exit(0);
-				case 1:
-					vsAi = true;
-					startGame();
-					break;
-				case 2:
-					vsAi = false;
-					startGame();
-					break;
-				case 3:
-					setDifficulty();
-					break;
-				case 4:
-					chooseColor();
-					break;
-				default:
-					System.err.print("Wrong choice. Try again\n");
-					break;
-			}
-		}
+		startGame();
 	}
 
 	public void startGame() {
@@ -73,6 +44,7 @@ public class CliGame implements Game {
 					controller.makeMove(move);
 				} else if (controller.currentPlayer() == humanoid.opponent()) {
 					move = vsAi ? controller.evalMove() : selectMove(possblMoves);
+					System.out.println("SOY LA COMPU!");
 					controller.makeMove(move);
 				}
 			} else {
@@ -115,29 +87,7 @@ public class CliGame implements Game {
 	}
 
 	private void setDifficulty() {
-		System.out.print("\n1. " + DifficultyLevel.EASY.description()
-				 + "\n2. " + DifficultyLevel.NORMAL.description()
-				 + "\n3. " + DifficultyLevel.HARD.description()
-				 + "\n4. " + DifficultyLevel.HEROIC.description()
-				 + "\n\nSelect difficutly:");
-		while (true) {
-			switch (readInt()) {
-				case 1:
-					controller.setDifficulty(DifficultyLevel.EASY);
-					return;
-				case 2:
-					controller.setDifficulty(DifficultyLevel.NORMAL);
-					return;
-				case 3:
-					controller.setDifficulty(DifficultyLevel.HARD);
-					return;
-				case 4:
-					controller.setDifficulty(DifficultyLevel.HEROIC);
-					return;
-				default:
-					System.err.print("Wrong choice. Try again: ");
-			}
-		}
+		controller.setDifficulty(DifficultyLevel.HEROIC);	
 	}
 
 	private void chooseColor() {
@@ -167,7 +117,7 @@ public class CliGame implements Game {
 			System.out.println("\n:: We haz a winnarz!");
 			System.out.printf("\n==> %s wins\n", controller.getWinner());
 			if (vsAi) {
-				System.out.printf("\n==> Robots conquered teh worldz\n");
+				System.out.printf("\n==> End of Game\n");
 			}
 		}
 	}

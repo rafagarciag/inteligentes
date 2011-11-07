@@ -15,8 +15,8 @@ package core;
  */
 public enum SquareState {
 
-	BLACK('●'),
-	WHITE('○'),
+	BLACK('○'),
+	WHITE('●'),
 //	BLACK('x'),
 //	WHITE('o'),
 	PSSBL('.'),
